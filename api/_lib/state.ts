@@ -1,0 +1,6 @@
+export type Health='HEALTHY'|'DEGRADED'|'DOWN'
+export type Region={id:string;name:string;location:string;weight:number;rtt:number;health:Health;fallback:string;flag:string}
+export type RoutePolicy={id:string;clientRegion:string;primary:string;pathPrefix:string;enabled:boolean}
+export const regions:Region[]=[{id:'af-south-1',name:'Cape Town / East Africa Relay',location:'Africa',weight:35,rtt:42,health:'HEALTHY',fallback:'eu-west-1',flag:'🌍'},{id:'eu-west-1',name:'Frankfurt',location:'Europe',weight:30,rtt:86,health:'HEALTHY',fallback:'us-east-1',flag:'🇪🇺'},{id:'us-east-1',name:'Virginia',location:'North America',weight:25,rtt:118,health:'HEALTHY',fallback:'ap-northeast-1',flag:'🇺🇸'},{id:'ap-northeast-1',name:'Tokyo',location:'Asia Pacific',weight:10,rtt:154,health:'HEALTHY',fallback:'af-south-1',flag:'🇯🇵'}]
+export const policies:RoutePolicy[]=[{id:'pol-global',clientRegion:'global',primary:'af-south-1',pathPrefix:'/',enabled:true},{id:'pol-europe',clientRegion:'eu-west-1',primary:'eu-west-1',pathPrefix:'/',enabled:true},{id:'pol-americas',clientRegion:'us-east-1',primary:'us-east-1',pathPrefix:'/',enabled:true},{id:'pol-asia',clientRegion:'ap-northeast-1',primary:'ap-northeast-1',pathPrefix:'/',enabled:true}]
+export function snapshot(){return{regions:regions.map(r=>({...r})),policies:policies.map(p=>({...p}))}}
